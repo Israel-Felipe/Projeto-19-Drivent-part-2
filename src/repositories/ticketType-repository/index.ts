@@ -4,8 +4,8 @@ async function findTypes() {
   return prisma.ticketType.findMany();
 }
 
-const ticketRepository = {
+const ticketTypeRepository = {
   findTypes
 };
 
-export default ticketRepository;
+export default ticketTypeRepository;
