@@ -54,11 +54,35 @@ async function findTicketBelongsToUser(ticketId: number, userId: number) {
   });
 }
 
+async function findTicketPriceByTicketId(ticketId: number) {
+  return prisma.ticket.findUnique({
+    where: {
+      id: ticketId
+    },
+    include: {
+      TicketType: true
+    }
+  });
+}
+
+async function updateTicketStatusById(ticketId: number) {
+  return prisma.ticket.update({
+    where: {
+      id: ticketId
+    },
+    data: {
+      status: "PAID"
+    }
+  });
+}
+
 const ticketsRepository = {
   findUserTicket,
   createUserTicket,
   findTicketById,
-  findTicketBelongsToUser
+  findTicketBelongsToUser,
+  findTicketPriceByTicketId,
+  updateTicketStatusById
 };
 
 export default ticketsRepository;
